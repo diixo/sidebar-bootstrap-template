@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="ru">
 <head>
   <meta charset="utf-8">
@@ -33,19 +33,6 @@
       background: linear-gradient(180deg, #f0f0f0 0%, #e6e6e6 100%);
       border-bottom: 1px solid var(--app-border);
       border-top: 1px solid var(--app-border);
-    }
-
-    .app-logo {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: #0d6efd;
-      color: #ffffff;
-      font-weight: 700;
-      flex: 0 0 auto;
     }
 
     .horizontal-menu-wrapper {
@@ -102,22 +89,55 @@
       border-radius: 999px;
     }
 
-    .page-card {
-      border: 1px solid var(--app-border);
-      border-radius: 16px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, .04);
+    .app-layout {
+      height: calc(100vh - 90px);
     }
 
-    .stat-card {
-      border: 1px solid var(--app-border);
-      border-radius: 14px;
-      background: #ffffff;
+    ul.tree, ul.tree ul {
+      list-style: none;
+      padding-left: 1.25rem;
+      margin: 0;
     }
 
-    .table-card {
-      border: 1px solid var(--app-border);
-      border-radius: 16px;
-      overflow: hidden;
+    ul.tree { padding-left: 0; }
+
+    .tree .parent_li > span,
+    .tree .tree-folder > span {
+      cursor: pointer;
+      user-select: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 0;
+    }
+
+    .tree .parent_li > span:hover,
+    .tree .tree-folder > span:hover {
+      color: #0d6efd;
+    }
+
+    .tree .parent_li > span > i,
+    .tree .tree-folder > span > i {
+      transition: transform 0.15s;
+      font-size: 0.75rem;
+    }
+
+    .tree .parent_li.open > span > i,
+    .tree .tree-folder.open > span > i {
+      transform: rotate(90deg);
+    }
+
+    .tree a {
+      text-decoration: none;
+      color: #495057;
+      font-size: 0.85rem;
+      padding: 1px 4px;
+      border-radius: 4px;
+    }
+
+    .tree a:hover {
+      color: #0d6efd;
+      background: #f1f3f5;
     }
 
     @media (max-width: 576px) {
@@ -280,13 +300,173 @@
   </nav>
 
   <!-- Main content -->
-  <main class="px-3 py-4">
+  <main class="app-layout d-flex">
+    <!-- Sidebar: Tree + Element detail -->
+    <div class="d-flex flex-column border bg-white" style="width: 350px; min-width: 250px;">
+      <!-- Tree panel -->
+      <div class="bg-light fw-bold small px-3 py-2 border-bottom">Model Tree</div>
+      <div class="flex-grow-1 overflow-auto p-2">
+            <b><a href="ASPICE-Archi-gh-pages/0c6fbcf4-57de-4e25-a1b4-d9a0fa460c16/elements/model.html" target="view" class="text-decoration-none text-dark">ASPICE</a></b>
+            <ul class="tree ms-3">
+              <li><span><i class="bi bi-caret-right-fill"></i> Model Content</span>
+                <ul>
+                  <li><span><i class="bi bi-caret-right-fill"></i> Strategy</span>
+                    <ul>
+                    </ul>
+                  </li>
+                  <li><span><i class="bi bi-caret-right-fill"></i> Business</span>
+                    <ul>
+                      <li class="tree-element"><a href="ASPICE-Archi-gh-pages/0c6fbcf4-57de-4e25-a1b4-d9a0fa460c16/elements/5f16ba74-2d83-4461-9125-aa6f3114407c.html" target="element">SWE.1 Software Requirements Analysis</a></li>
+                      <li class="tree-element"><a href="ASPICE-Archi-gh-pages/0c6fbcf4-57de-4e25-a1b4-d9a0fa460c16/elements/989fd6d3-9664-464c-a1d4-2a73076d8e8f.html" target="element">SWE.2 Software Architectural Design</a></li>
+                      <li class="tree-element"><a href="ASPICE-Archi-gh-pages/0c6fbcf4-57de-4e25-a1b4-d9a0fa460c16/elements/a3809e46-4878-4b2d-be33-c3a6438c58b6.html" target="element">SWE.3 Software Detailed Design and Unit Construction</a></li>
+                      <li class="tree-element"><a href="ASPICE-Archi-gh-pages/0c6fbcf4-57de-4e25-a1b4-d9a0fa460c16/elements/15db161b-3d65-4e8f-a5f5-af0d145bf8ff.html" target="element">SWE.4 Software Unit Verification</a></li>
+                      <li class="tree-element"><a href="ASPICE-Archi-gh-pages/0c6fbcf4-57de-4e25-a1b4-d9a0fa460c16/elements/ce37a6a9-ffaa-4208-b40e-c970d9b6069e.html" target="element">SWE.5 Software Integration and Integration Test</a></li>
+                      <li class="tree-element"><a href="ASPICE-Archi-gh-pages/0c6fbcf4-57de-4e25-a1b4-d9a0fa460c16/elements/a9cacbed-b90c-4693-80cc-8f1926fb1c8b.html" target="element">SWE.6 Software Qualification Test</a></li>
+                      <li class="tree-element"><a href="ASPICE-Archi-gh-pages/0c6fbcf4-57de-4e25-a1b4-d9a0fa460c16/elements/d65e77dc-10bd-4b80-82ca-7172ae318f4d.html" target="element">SYS.2 System Requirements Analysis</a></li>
+                      <li class="tree-element"><a href="ASPICE-Archi-gh-pages/0c6fbcf4-57de-4e25-a1b4-d9a0fa460c16/elements/85958416-de8c-4475-941b-eeaaff5eeed9.html" target="element">SYS.3 System Architectural Design</a></li>
+                      <li class="tree-element"><a href="ASPICE-Archi-gh-pages/0c6fbcf4-57de-4e25-a1b4-d9a0fa460c16/elements/97098392-5cad-4e12-a470-98cb780464cc.html" target="element">MAN.3 Project Management</a></li>
+                      <li class="tree-element"><a href="ASPICE-Archi-gh-pages/0c6fbcf4-57de-4e25-a1b4-d9a0fa460c16/elements/36ac73d7-fffc-4af6-a5fc-e5350996d5b0.html" target="element">SUP.8 Configuration Management</a></li>
+                      <li class="tree-element"><a href="ASPICE-Archi-gh-pages/0c6fbcf4-57de-4e25-a1b4-d9a0fa460c16/elements/072bd3c8-d354-401c-a8e4-d358b7053358.html" target="element">SUP.9 Problem Resolution Management</a></li>
+                      <li class="tree-element"><a href="ASPICE-Archi-gh-pages/0c6fbcf4-57de-4e25-a1b4-d9a0fa460c16/elements/728b74f3-59aa-422b-8fff-a78a0c13e17a.html" target="element">SUP.1 Quality Assurance</a></li>
+                    </ul>
+                  </li>
+                  <li><span><i class="bi bi-caret-right-fill"></i> Application</span>
+                    <ul>
+                    </ul>
+                  </li>
+                  <li><span><i class="bi bi-caret-right-fill"></i> Technology &amp; Physical</span>
+                    <ul>
+                    </ul>
+                  </li>
+                  <li><span><i class="bi bi-caret-right-fill"></i> Motivation</span>
+                    <ul>
+                      <li class="tree-element"><a href="ASPICE-Archi-gh-pages/0c6fbcf4-57de-4e25-a1b4-d9a0fa460c16/elements/006cac41-4164-483a-97f9-5214f429af55.html" target="element">MAN.3.O.4 Interfaces within the project</a></li>
+                      <li class="tree-element"><a href="ASPICE-Archi-gh-pages/0c6fbcf4-57de-4e25-a1b4-d9a0fa460c16/elements/00e08590-b3f4-48a4-9ede-89e520f35b9b.html" target="element">MAN.3.O.3 The activities and resources necessary</a></li>
+                      <li class="tree-element"><a href="ASPICE-Archi-gh-pages/0c6fbcf4-57de-4e25-a1b4-d9a0fa460c16/elements/0223923b-95f6-447e-adcc-bfc6f31e95b3.html" target="element">ACQ.15.O.4 Any shortfalls in capability</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span><i class="bi bi-caret-right-fill"></i> Views</span>
+                <ul>
+                  <li class="tree-folder"><span><i class="bi bi-caret-right-fill"></i> SPL Supply Process Group</span>
+                    <ul>
+                      <li class="tree-folder"><span><i class="bi bi-caret-right-fill"></i> SPL.2 Product Release</span>
+                        <ul>
+                          <li class="tree-element"><a href="ASPICE-Archi-gh-pages/0c6fbcf4-57de-4e25-a1b4-d9a0fa460c16/views/a6fe27f8-ff18-4f12-8ec5-fd4e9acc1a46.html" target="view">Overview - SPL.2 Product Release</a></li>
+                          <li class="tree-element"><a href="ASPICE-Archi-gh-pages/0c6fbcf4-57de-4e25-a1b4-d9a0fa460c16/views/1924754a-e2b4-4b1f-b118-1b725d9688c7.html" target="view">O. vs. BP. vs. WP. - SPL.2 Product Release</a></li>
+                        </ul>
+                      </li>
+                      <li class="tree-folder"><span><i class="bi bi-caret-right-fill"></i> SPL.1 Supplier Tendering</span>
+                        <ul>
+                          <li class="tree-element"><a href="ASPICE-Archi-gh-pages/0c6fbcf4-57de-4e25-a1b4-d9a0fa460c16/views/5cbd0b21-14ab-4aa1-8ecd-a6680caa279e.html" target="view">Overview - SPL.1 Supplier Tendering</a></li>
+                          <li class="tree-element"><a href="ASPICE-Archi-gh-pages/0c6fbcf4-57de-4e25-a1b4-d9a0fa460c16/views/5f0b0f47-afbf-41af-8705-bcf5dc2da78a.html" target="view">O. vs. BP. vs. WP. - SPL.1 Supplier Tendering</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="tree-folder"><span><i class="bi bi-caret-right-fill"></i> SWE Software Engineering Process Group</span>
+                    <ul>
+                      <li class="tree-folder"><span><i class="bi bi-caret-right-fill"></i> SWE.1 Software Requirements Analysis</span>
+                        <ul>
+                          <li class="tree-element"><a href="ASPICE-Archi-gh-pages/0c6fbcf4-57de-4e25-a1b4-d9a0fa460c16/views/93fd1303-359e-41aa-9ae3-d25fac269c97.html" target="view">Overview - SWE.1 Software Requirements Analysis</a></li>
+                          <li class="tree-element"><a href="ASPICE-Archi-gh-pages/0c6fbcf4-57de-4e25-a1b4-d9a0fa460c16/views/73004618-6d8c-4773-aae0-afb94660d0ed.html" target="view">O. vs. BP. vs. WP. - SWE.1 Software Requirements Analysis</a></li>
+                        </ul>
+                      </li>
+                      <li class="tree-folder"><span><i class="bi bi-caret-right-fill"></i> SWE.2 Software Architectural Design</span>
+                        <ul>
+                          <li class="tree-element"><a href="ASPICE-Archi-gh-pages/0c6fbcf4-57de-4e25-a1b4-d9a0fa460c16/views/d0bb5cf3-6c15-42ca-ac8c-4dda7e98c01f.html" target="view">Overview - SWE.2 Software Architectural Design</a></li>
+                          <li class="tree-element"><a href="ASPICE-Archi-gh-pages/0c6fbcf4-57de-4e25-a1b4-d9a0fa460c16/views/d2e8c3d8-1a58-48e3-a1d2-7503c6952795.html" target="view">O. vs. BP. vs. WP. - SWE.2 Software Architectural Design</a></li>
+                        </ul>
+                      </li>
+                      <li class="tree-folder"><span><i class="bi bi-caret-right-fill"></i> SWE.3 Software Detailed Design and Unit Construction</span>
+                        <ul>
+                          <li class="tree-element"><a href="ASPICE-Archi-gh-pages/0c6fbcf4-57de-4e25-a1b4-d9a0fa460c16/views/e322a87e-008e-463b-82d9-c828d71fc993.html" target="view">Overview - SWE.3</a></li>
+                          <li class="tree-element"><a href="ASPICE-Archi-gh-pages/0c6fbcf4-57de-4e25-a1b4-d9a0fa460c16/views/6bfb7a3a-af90-403b-8d44-7254906ef659.html" target="view">O. vs. BP. vs. WP. - SWE.3</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="tree-folder"><span><i class="bi bi-caret-right-fill"></i> MAN Management Process Group</span>
+                    <ul>
+                      <li class="tree-folder"><span><i class="bi bi-caret-right-fill"></i> MAN.3 Project Management</span>
+                        <ul>
+                          <li class="tree-element"><a href="ASPICE-Archi-gh-pages/0c6fbcf4-57de-4e25-a1b4-d9a0fa460c16/views/24e39b5f-7472-4204-8f22-7dab9accf917.html" target="view">Overview - MAN.3 Project Management</a></li>
+                          <li class="tree-element"><a href="ASPICE-Archi-gh-pages/0c6fbcf4-57de-4e25-a1b4-d9a0fa460c16/views/37245f6b-56a6-493d-9b23-5a727439148a.html" target="view">O. vs. BP. vs. WP. - MAN.3 Project Management</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="tree-element"><a href="ASPICE-Archi-gh-pages/0c6fbcf4-57de-4e25-a1b4-d9a0fa460c16/views/9e94f80f-8775-4044-8110-6a872c99ec05.html" target="view">Overview - Process Reference Model</a></li>
+                  <li class="tree-element"><a href="ASPICE-Archi-gh-pages/0c6fbcf4-57de-4e25-a1b4-d9a0fa460c16/views/aa2307df-b861-4aec-b9ee-91404cb69806.html" target="view">Overview - Extended</a></li>
+                </ul>
+              </li>
+            </ul>
+      </div>
+      <!-- Element detail iframe -->
+      <div class="border-top" style="height: 250px;">
+        <iframe name="element" src="ASPICE-Archi-gh-pages/elements/empty-element.html" class="w-100 h-100 border-0"></iframe>
+      </div>
+    </div>
 
-
+    <!-- Main content iframe -->
+    <div class="flex-grow-1 border bg-white">
+      <iframe name="view" src="ASPICE-Archi-gh-pages/0c6fbcf4-57de-4e25-a1b4-d9a0fa460c16/elements/model.html" class="w-100 h-100 border-0"></iframe>
+    </div>
   </main>
 
-  <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
-  </script>
+    <!-- Tree toggle script -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        function strcmp(a, b) {
+          var aText = a.textContent.trim().toLowerCase();
+          var bText = b.textContent.trim().toLowerCase();
+          if (aText < bText) return -1;
+          if (aText > bText) return 1;
+          return 0;
+        }
+
+        function sortChildren(ul) {
+          var folders = Array.from(ul.querySelectorAll(':scope > li.tree-folder'));
+          var elements = Array.from(ul.querySelectorAll(':scope > li.tree-element'));
+          folders.sort(strcmp).forEach(function(li) { ul.appendChild(li); });
+          elements.sort(strcmp).forEach(function(li) { ul.appendChild(li); });
+        }
+
+        // Setup: add parent_li to any li with child ul, hide direct children
+        document.querySelectorAll('.tree li').forEach(function(li) {
+          if (li.querySelector(':scope > ul')) {
+            li.classList.add('parent_li');
+            li.querySelectorAll(':scope > ul > li').forEach(function(child) {
+              child.style.display = 'none';
+            });
+          }
+        });
+
+        // Click handler
+        document.querySelectorAll('.tree li.parent_li > span, .tree li.tree-folder > span').forEach(function(toggler) {
+          toggler.addEventListener('click', function(e) {
+            var li = this.closest('li');
+            var childUl = li.querySelector(':scope > ul');
+            if (!childUl) return;
+
+            var children = childUl.children;
+            var isOpen = li.classList.contains('open');
+
+            if (isOpen) {
+              for (var i = 0; i < children.length; i++) children[i].style.display = 'none';
+              li.classList.remove('open');
+            } else {
+              sortChildren(childUl);
+              for (var i = 0; i < children.length; i++) children[i].style.display = '';
+              li.classList.add('open');
+            }
+            e.stopPropagation();
+          });
+        });
+      });
+    </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
