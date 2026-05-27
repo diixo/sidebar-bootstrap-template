@@ -1,0 +1,27 @@
+*.pyc
+*__pycache__/
+.vscode/
+.DS_Store
+
+# Environments
+.env
+.env-django
+.env-server
+.venv
+env/
+venv/
+ENV/
+env.bak/
+
+log/
+log.txt
+
+
+models/
+datasets/
+train_products/
+
+wikipedia/
+datasets/
+
+ASPICE-Archi-gh-pages/*
