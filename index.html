@@ -89,6 +89,29 @@
       border-radius: 999px;
     }
 
+
+
+    /* Keep the dropdown button inside the horizontal scroll menu,
+       but render its menu as fixed so it is not clipped by overflow-x:auto. */
+    .horizontal-menu-wrapper {
+      z-index: 2000;
+    }
+
+    .horizontal-menu .nav-item.dropdown {
+      position: static;
+    }
+
+    .horizontal-menu .dropdown-menu.dropdown-menu-fixed-scroll {
+      position: fixed !important;
+      z-index: 3000;
+      margin-top: 0;
+    }
+
+    .horizontal-menu .nav-link.dropdown-toggle::after {
+      display: none;
+    }
+	/* end drop-down */
+
     .app-layout {
       height: calc(100vh - 90px);
     }
@@ -268,6 +291,24 @@
             <i class="bi bi-house-door"></i>
             Overview
           </a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <button
+            class="nav-link dropdown-toggle"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            aria-label="Overview actions"
+          >
+            <i class="bi bi-three-dots"></i>
+          </button>
+
+          <ul class="dropdown-menu dropdown-menu-fixed-scroll shadow-sm">
+            <li><a class="dropdown-item" href="#">New</a></li>
+            <li><a class="dropdown-item" href="#">Open</a></li>
+            <li><a class="dropdown-item" href="#">Save</a></li>
+          </ul>
         </li>
 
         <li class="nav-item">
@@ -522,6 +563,57 @@ Created by: Alexander Efremov (alexander.efremoff@gmail.com)</div>
       });
     </script>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+    <!-- Dropdown positioning helper for menus inside horizontal overflow containers -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var dropdownItems = document.querySelectorAll('.horizontal-menu .nav-item.dropdown');
+
+        function positionDropdown(dropdownItem) {
+          var button = dropdownItem.querySelector('[data-bs-toggle="dropdown"]');
+          var menu = dropdownItem.querySelector('.dropdown-menu-fixed-scroll');
+          if (!button || !menu || !menu.classList.contains('show')) return;
+
+          var rect = button.getBoundingClientRect();
+          var menuWidth = menu.offsetWidth || 160;
+          var viewportWidth = document.documentElement.clientWidth;
+          var left = rect.left;
+
+          if (left + menuWidth > viewportWidth - 8) {
+            left = viewportWidth - menuWidth - 8;
+          }
+          if (left < 8) {
+            left = 8;
+          }
+
+          menu.style.top = (rect.bottom + 6) + 'px';
+          menu.style.left = left + 'px';
+        }
+
+        dropdownItems.forEach(function(dropdownItem) {
+          dropdownItem.addEventListener('shown.bs.dropdown', function() {
+            positionDropdown(dropdownItem);
+          });
+
+          dropdownItem.addEventListener('hidden.bs.dropdown', function() {
+            var menu = dropdownItem.querySelector('.dropdown-menu-fixed-scroll');
+            if (!menu) return;
+            menu.style.top = '';
+            menu.style.left = '';
+          });
+        });
+
+        window.addEventListener('resize', function() {
+          dropdownItems.forEach(positionDropdown);
+        });
+
+        document.querySelectorAll('.horizontal-menu').forEach(function(menuScroller) {
+          menuScroller.addEventListener('scroll', function() {
+            dropdownItems.forEach(positionDropdown);
+          });
+        });
+      });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>
