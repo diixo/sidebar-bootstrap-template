@@ -578,14 +578,17 @@ Created by: Alexander Efremov (alexander.efremoff@gmail.com)</div>
           var viewportWidth = document.documentElement.clientWidth;
           var left = rect.left;
 
-          if (left + menuWidth > viewportWidth - 8) {
-            left = viewportWidth - menuWidth - 8;
+          var MENU_GAP = 6;          // расстояние между кнопкой и dropdown
+          var VIEWPORT_PADDING = 8;  // минимальный отступ от края экрана
+
+          if (left + menuWidth > viewportWidth - VIEWPORT_PADDING) {
+            left = viewportWidth - menuWidth - VIEWPORT_PADDING;
           }
-          if (left < 8) {
-            left = 8;
+          if (left < VIEWPORT_PADDING) {
+            left = VIEWPORT_PADDING;
           }
 
-          menu.style.top = (rect.bottom + 6) + 'px';
+          menu.style.top = (rect.bottom + MENU_GAP) + 'px';
           menu.style.left = left + 'px';
         }
 
